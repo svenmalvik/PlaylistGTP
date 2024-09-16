@@ -7,9 +7,6 @@
     return;
   }
 
-  const pageTitle = document.title;
-  console.log("Page title is:", pageTitle);
-
   // Get all elements with the tag name 'ytcr-video-content-list-claim-row'
   const elements = document.querySelectorAll('ytcr-video-content-list-claim-row');
   console.log("Found elements:", elements);
