@@ -1,18 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Load settings from storage
-  chrome.storage.sync.get(['apiProvider', 'azureApiKey', 'azureEndpoint', 'openaiApiKey', 'openaiEndpoint', 'openaiModel'], (data) => {
-    document.getElementById('api-provider').value = data.apiProvider || 'azure';
-    document.getElementById('azure-api-key').value = data.azureApiKey || '';
-    document.getElementById('azure-endpoint').value = data.azureEndpoint || '';
-    document.getElementById('openai-api-key').value = data.openaiApiKey || '';
-    document.getElementById('openai-endpoint').value = data.openaiEndpoint || '';
-    document.getElementById('openai-model').value = data.openaiModel || '';
+  const apiProviderSelect = document.getElementById('api-provider');
+  const azureSettings = document.getElementById('azure-settings');
+  const openaiSettings = document.getElementById('openai-settings');
 
-    toggleSettings(data.apiProvider || 'azure');
+  // Load saved settings
+  chrome.storage.sync.get(['apiProvider', 'azureApiKey', 'azureEndpoint', 'openaiApiKey', 'openaiEndpoint', 'openaiModel'], (config) => {
+    if (config.apiProvider) {
+      apiProviderSelect.value = config.apiProvider;
+      toggleSettings(config.apiProvider);
+    }
+    if (config.azureApiKey) document.getElementById('azure-api-key').value = config.azureApiKey;
+    if (config.azureEndpoint) document.getElementById('azure-endpoint').value = config.azureEndpoint;
+    if (config.openaiApiKey) document.getElementById('openai-api-key').value = config.openaiApiKey;
+    if (config.openaiEndpoint) document.getElementById('openai-endpoint').value = config.openaiEndpoint;
+    if (config.openaiModel) document.getElementById('openai-model').value = config.openaiModel;
   });
 
-  // Save settings to storage
-  document.getElementById('api-provider').addEventListener('change', (event) => {
+  apiProviderSelect.addEventListener('change', (event) => {
     const apiProvider = event.target.value;
     chrome.storage.sync.set({ apiProvider });
     toggleSettings(apiProvider);
@@ -40,11 +44,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function toggleSettings(apiProvider) {
     if (apiProvider === 'openai') {
-      document.getElementById('azure-settings').style.display = 'none';
-      document.getElementById('openai-settings').style.display = 'block';
+      azureSettings.style.display = 'none';
+      openaiSettings.style.display = 'block';
     } else {
-      document.getElementById('azure-settings').style.display = 'block';
-      document.getElementById('openai-settings').style.display = 'none';
+      azureSettings.style.display = 'block';
+      openaiSettings.style.display = 'none';
     }
   }
 });

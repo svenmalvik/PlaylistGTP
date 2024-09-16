@@ -81,30 +81,3 @@ input[type="text"]::placeholder {
 .tooltip {
   text-decoration: underline;
 }
-
-/* Dark mode styles */
-body.dark-mode {
-  background-color: #333;
-  color: #f4f4f9;
-}
-
-body.dark-mode .container {
-  background: #444;
-  color: #f4f4f9;
-}
-
-body.dark-mode input[type="text"],
-body.dark-mode select {
-  background-color: #555;
-  color: #f4f4f9;
-  border: 1px solid #666;
-}
-
-body.dark-mode input[type="text"]::placeholder {
-  color: #bbb;
-}
-
-body.dark-mode #api-provider {
-  background-color: #555;
-  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="%23f4f4f9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><path d="M6 9l6-6 6 6"/></svg>');
-}
