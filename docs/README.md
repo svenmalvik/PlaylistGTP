@@ -56,4 +56,4 @@ If you have any questions about this Privacy Policy, please contact us at [Your 
 
 ## Conclusion
 
-By using [Your Extension Name], you agree to the collection and use of information in accordance with this policy. We are committed to protecting your privacy and ensuring a positive user experience.
+By using YouTube Playlist from Copyright Extensions, you agree to the collection and use of information in accordance with this policy. We are committed to protecting your privacy and ensuring a positive user experience.
