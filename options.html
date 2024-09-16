@@ -7,17 +7,29 @@
 <body>
   <div class="container">
     <h1>Extension Settings</h1>
-    <div class="toggle-container">
-      <label for="dark-mode-toggle">Enable Dark Mode</label>
-      <input type="checkbox" id="dark-mode-toggle">
-    </div>
     <div class="input-container">
-      <label for="api-key">Azure OpenAI API Key</label>
-      <input type="text" id="api-key">
+      <label for="api-provider">API Provider</label>
+      <select id="api-provider">
+        <option value="azure">Azure OpenAI</option>
+        <option value="openai">OpenAI</option>
+      </select>
     </div>
-    <div class="input-container">
-      <label for="endpoint">Azure OpenAI Endpoint</label>
-      <input type="text" id="endpoint">
+    <div class="input-container" id="azure-settings">
+      <label for="azure-api-key">Azure OpenAI API Key</label>
+      <input type="text" id="azure-api-key" placeholder="Enter Azure API Key">
+      <label for="azure-endpoint">Azure OpenAI Endpoint</label>
+      <input type="text" id="azure-endpoint" placeholder="Enter Azure Endpoint">
+      <div class="info-box" id="azure-endpoint-info">
+        <span class="tooltip">Example: <code>https://<NAME>.openai.azure.com/openai/deployments/&lt;MODELNAME&gt;/chat/completions?api-version=2023-03-15-preview</code></span>
+      </div>
+    </div>
+    <div class="input-container" id="openai-settings" style="display: none;">
+      <label for="openai-api-key">OpenAI API Key</label>
+      <input type="text" id="openai-api-key" placeholder="Enter OpenAI API Key">
+      <label for="openai-endpoint">OpenAI Endpoint</label>
+      <input type="text" id="openai-endpoint" placeholder="Enter OpenAI Endpoint">
+      <label for="openai-model">OpenAI Model</label>
+      <input type="text" id="openai-model" placeholder="Enter OpenAI Model">
     </div>
   </div>
   <script src="options.js"></script>

@@ -1,21 +1,110 @@
 body {
   font-family: 'Roboto', sans-serif;
-  margin: 20px;
-  font-size: 14px; /* Set the font size to 14px */
+  background-color: #f4f4f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .container {
+  font-family: 'Roboto', sans-serif;
   max-width: 600px;
-  margin: auto;
+  margin: 0 auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  min-height: 400px; /* Adjusted height to fit the info-box */
 }
 
-.toggle-container, .input-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.toggle-container,
+.input-container {
   margin-bottom: 20px;
 }
 
-.input-container input {
-  width: 60%;
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type="checkbox"] {
+  margin-left: 10px;
+}
+
+input[type="text"]::placeholder {
+  color: #aaa;
+}
+
+#api-provider {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><path d="M6 9l6-6 6 6"/></svg>') no-repeat right 10px center;
+  background-color: #fff;
+  background-size: 16px;
+}
+
+#api-provider::-ms-expand {
+  display: none;
+}
+
+.info-box {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  color: #0073e6;
+  margin-top: 10px;
+}
+
+.tooltip {
+  text-decoration: underline;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  background-color: #333;
+  color: #f4f4f9;
+}
+
+body.dark-mode .container {
+  background: #444;
+  color: #f4f4f9;
+}
+
+body.dark-mode input[type="text"],
+body.dark-mode select {
+  background-color: #555;
+  color: #f4f4f9;
+  border: 1px solid #666;
+}
+
+body.dark-mode input[type="text"]::placeholder {
+  color: #bbb;
+}
+
+body.dark-mode #api-provider {
+  background-color: #555;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="%23f4f4f9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><path d="M6 9l6-6 6 6"/></svg>');
 }

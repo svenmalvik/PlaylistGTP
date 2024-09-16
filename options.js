@@ -1,27 +1,50 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const darkModeToggle = document.getElementById('dark-mode-toggle');
-  const apiKeyInput = document.getElementById('api-key');
-  const endpointInput = document.getElementById('endpoint');
+  // Load settings from storage
+  chrome.storage.sync.get(['apiProvider', 'azureApiKey', 'azureEndpoint', 'openaiApiKey', 'openaiEndpoint', 'openaiModel'], (data) => {
+    document.getElementById('api-provider').value = data.apiProvider || 'azure';
+    document.getElementById('azure-api-key').value = data.azureApiKey || '';
+    document.getElementById('azure-endpoint').value = data.azureEndpoint || '';
+    document.getElementById('openai-api-key').value = data.openaiApiKey || '';
+    document.getElementById('openai-endpoint').value = data.openaiEndpoint || '';
+    document.getElementById('openai-model').value = data.openaiModel || '';
 
-  // Load the current settings
-  chrome.storage.sync.get(['darkMode', 'apiKey', 'endpoint'], (settings) => {
-    darkModeToggle.checked = settings.darkMode || false;
-    apiKeyInput.value = settings.apiKey || '';
-    endpointInput.value = settings.endpoint || '';
+    toggleSettings(data.apiProvider || 'azure');
   });
 
-  // Save the dark mode setting when the toggle is changed
-  darkModeToggle.addEventListener('change', () => {
-    chrome.storage.sync.set({ darkMode: darkModeToggle.checked });
+  // Save settings to storage
+  document.getElementById('api-provider').addEventListener('change', (event) => {
+    const apiProvider = event.target.value;
+    chrome.storage.sync.set({ apiProvider });
+    toggleSettings(apiProvider);
   });
 
-  // Save the API key when it is changed
-  apiKeyInput.addEventListener('input', () => {
-    chrome.storage.sync.set({ apiKey: apiKeyInput.value });
+  document.getElementById('azure-api-key').addEventListener('input', (event) => {
+    chrome.storage.sync.set({ azureApiKey: event.target.value });
   });
 
-  // Save the endpoint when it is changed
-  endpointInput.addEventListener('input', () => {
-    chrome.storage.sync.set({ endpoint: endpointInput.value });
+  document.getElementById('azure-endpoint').addEventListener('input', (event) => {
+    chrome.storage.sync.set({ azureEndpoint: event.target.value });
   });
+
+  document.getElementById('openai-api-key').addEventListener('input', (event) => {
+    chrome.storage.sync.set({ openaiApiKey: event.target.value });
+  });
+
+  document.getElementById('openai-endpoint').addEventListener('input', (event) => {
+    chrome.storage.sync.set({ openaiEndpoint: event.target.value });
+  });
+
+  document.getElementById('openai-model').addEventListener('input', (event) => {
+    chrome.storage.sync.set({ openaiModel: event.target.value });
+  });
+
+  function toggleSettings(apiProvider) {
+    if (apiProvider === 'openai') {
+      document.getElementById('azure-settings').style.display = 'none';
+      document.getElementById('openai-settings').style.display = 'block';
+    } else {
+      document.getElementById('azure-settings').style.display = 'block';
+      document.getElementById('openai-settings').style.display = 'none';
+    }
+  }
 });

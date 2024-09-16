@@ -22,12 +22,28 @@
 
   console.log("All innerText combined:", allInnerText);
 
-  // Function to send the collected text to Azure OpenAI
-  async function sendToAzureOpenAI(prompt) {
-    // Retrieve the API key and endpoint from storage
-    chrome.storage.sync.get(['apiKey', 'endpoint'], async (config) => {
-      const apiKey = config.apiKey;
-      const endpoint = config.endpoint;
+  // Function to send the collected text to the selected API
+  async function sendToAPI(prompt) {
+    // Retrieve the API provider, API key, endpoint, and model from storage
+    chrome.storage.sync.get(['apiProvider', 'azureApiKey', 'azureEndpoint', 'openaiApiKey', 'openaiEndpoint', 'openaiModel'], async (config) => {
+      let apiKey, endpoint, model, headers;
+
+      if (config.apiProvider === 'openai') {
+        apiKey = config.openaiApiKey;
+        endpoint = config.openaiEndpoint;
+        model = config.openaiModel; // Retrieve the model name for OpenAI
+        headers = {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`
+        };
+      } else {
+        apiKey = config.azureApiKey;
+        endpoint = config.azureEndpoint;
+        headers = {
+          'Content-Type': 'application/json',
+          'api-key': apiKey
+        };
+      }
 
       if (!apiKey || !endpoint) {
         console.error('API key or endpoint is not set.');
@@ -35,32 +51,48 @@
         return;
       }
 
-      const response = await fetch(endpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'api-key': apiKey
-        },
-        body: JSON.stringify({
-          messages: [{ role: 'user', content: prompt }]
-        })
-      });
+      const requestBody = {
+        messages: [{ role: 'user', content: prompt }]
+      };
 
-      const responseData = await response.json();
-      console.log("Azure OpenAI response:", responseData);
+      // Add model to the request body for OpenAI
+      if (config.apiProvider === 'openai') {
+        requestBody.model = model;
+      }
 
-      // Print the response message
-      if (responseData.choices && responseData.choices.length > 0) {
-        let responseMessage = responseData.choices[0].message.content;
-        console.log("Response message:", responseMessage);
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: headers,
+          body: JSON.stringify(requestBody)
+        });
 
-        // Replace newlines with HTML line breaks
-        responseMessage = responseMessage.replace(/\n/g, '<br>');
+        const responseData = await response.json();
+        console.log("API response:", responseData);
 
-        // Send the response message to the background script
-        chrome.runtime.sendMessage({ action: 'openaiResponse', content: responseMessage });
-      } else {
-        console.log("No response message received.");
+        // Check if the response is an error
+        if (responseData.error) {
+          console.log("API error:", responseData.error);
+          chrome.runtime.sendMessage({ action: 'displayError', content: `API error: ${responseData.error.message}` });
+          return;
+        }
+
+        // Print the response message
+        if (responseData.choices && responseData.choices.length > 0) {
+          let responseMessage = responseData.choices[0].message.content;
+          console.log("Response message:", responseMessage);
+
+          // Replace newlines with HTML line breaks
+          responseMessage = responseMessage.replace(/\n/g, '<br>');
+
+          // Send the response message to the background script
+          chrome.runtime.sendMessage({ action: 'openaiResponse', content: responseMessage });
+        } else {
+          console.log("No response message received.");
+        }
+      } catch (error) {
+        chrome.runtime.sendMessage({ action: 'displayError', content: `Request failed: ${error.message}` });
+        console.error('Request failed:', error); 
       }
     });
   }
@@ -86,6 +118,6 @@ Remember to only output the start time of the song, not the end time. DO NOT OUT
 ${allInnerText}
 `;
 
-  // Send the collected text to Azure OpenAI
-  sendToAzureOpenAI(prompt);
+  // Send the collected text to the selected API
+  sendToAPI(prompt);
 })();
