@@ -101,7 +101,7 @@
   const prompt = `
 The list shows the title, the artist, and the time the title was played. Do 2 steps:
 
-Step 1: Please create a paragraph in a casual style and say that it was super fun to mix those great songs together in my home studio; use other words than I used here. Also at my LinkedIn account to reach out to me linkedin.com/in/svenmalvik/. Add a few emojies.
+Step 1: Please create a paragraph in a casual style and say that I had fun to play those great songs; use other words than I used here. Add a few emojies.
 Step 2: Create a list in the following format for the titles, artist, and time:
 
 [time] Title (artist)
