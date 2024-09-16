@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "YouTube Playlist from Copyright Extensions",
+  "name": "YouTube Playlist Creator",
   "description": "Extension that creates a YouTube playlist from the copyright claims in YouTube Studio",
   "version": "1.0",
   "action": {
