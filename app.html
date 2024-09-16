@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="app.css">
+  </head>
+  <body>
+    <h1>Playlist from YouTube copyright claims</h1>
+    <div class="buy-me-a-coffee">
+      <a href="https://buymeacoffee.com/svenmalvik" target="_blank">
+        <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me a Coffee" style="height: 51px !important;width: 217px !important;">
+      </a>
+    </div>
+    <div class="button-container">
+      <button id="ai-magic-button">AI magic</button>
+      <button id="copy-button">Copy to Clipboard</button>
+    </div>
+    <div id="response-container"></div>
+    <div class="how-to">
+      <h2>How to Use</h2>
+      <p>Click the "AI magic" button to generate a playlist. Once the response is displayed, you can copy it to the clipboard using the "Copy to Clipboard" button that will appear after a valid output is generated.</p>
+      <p>Note: This extension only works within YouTube Studio using the following URL format: <code>studio.youtube.com/video/&lt;VIDEO_ID&gt;/copyright</code></p>
+      <p>API endpoint and API key can be set in the extension's <a href="options.html" target="_blank">configuration</a>.</p>
+      <img src="images/copyright.png" alt="Copyright Image">
+    </div>
+    <script src="popup.js"></script>
+  </body>
+</html>

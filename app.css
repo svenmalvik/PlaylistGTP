@@ -1,0 +1,66 @@
+body {
+  margin: 20px;
+  background: linear-gradient(to right, #ffffff, #c4c1be); /* Gradient background */
+  height: 100px; /* Set the height of the popup */
+  overflow-y: auto; /* Add scroll if content overflows */
+  padding-bottom: 20px; /* Add 20px space at the bottom */
+  font-family: 'Roboto', sans-serif; /* Apply the modern font */
+  font-size: 14px; /* Set the default font size */
+}
+
+#response-container {
+  width: 800px;
+  max-width: 600px; /* Set the maximum width to 600px */
+  word-wrap: break-word; /* Ensure text wraps within the container */
+  padding-bottom: 20px; /* Add 20px space at the bottom */
+  margin-top: 20px; /* Add 20px space at the top */
+}
+
+h1 {
+  text-align: center; /* Center the headline */
+}
+
+.button-container {
+  text-align: center; /* Center the buttons */
+  margin-top: 20px; /* Add some space above the buttons */
+}
+
+.how-to {
+  text-align: left; /* Align the how-to section to the left */
+}
+
+.how-to img {
+  width: 600px; /* Set the width of the image to 600px */
+  height: auto; /* Maintain the aspect ratio */
+  margin-bottom: 20px; /* Add 20px space at the bottom of the image */
+}
+
+#copy-button {
+  display: none; /* Initially hide the copy button */
+}
+
+body.dark-mode {
+  background: linear-gradient(to right, #333333, #111111);
+  color: #ffffff;
+}
+
+.dark-mode #response-container {
+  background-color: #444444;
+  color: #ffffff;
+}
+
+.dark-mode .how-to {
+  background-color: #444444;
+  color: #ffffff;
+}
+
+.dark-mode button {
+  background-color: #555555;
+  color: #ffffff;
+}
+
+.buy-me-a-coffee {
+  display: flex;
+  justify-content: center; /* Center the buy-me-a-coffee button */
+  margin-top: 20px;
+}

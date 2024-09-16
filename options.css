@@ -1,0 +1,21 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 20px;
+  font-size: 14px; /* Set the font size to 14px */
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+}
+
+.toggle-container, .input-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.input-container input {
+  width: 60%;
+}
