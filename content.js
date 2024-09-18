@@ -1,3 +1,12 @@
+/**
+ * Processes YouTube Content ID claim information and generates a formatted response using an AI API.
+ * This function is immediately invoked when the script loads.
+ * 
+ * @returns {void} This function doesn't return a value, but it performs several side effects:
+ *                 - Logs messages to the console
+ *                 - Sends messages to the extension's background script
+ *                 - Makes API calls to process the collected data
+ */
 (function() {
   console.log("Content script loaded");
 
@@ -13,6 +22,11 @@
 
   // Collect all innerText values into a single string with 2 line breaks between each
   let allInnerText = '';
+  /**
+   * Concatenates the inner text of all elements in the collection
+   * @param {NodeList|Array} elements - The collection of DOM elements to process
+   * @returns {string} A string containing the concatenated inner text of all elements, separated by double newlines
+   */
   elements.forEach(element => {
     allInnerText += element.innerText + '\n\n';
   });
