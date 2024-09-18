@@ -1,4 +1,20 @@
+/**
+ * Initializes event listeners for the extension's popup page
+ * @returns {void} This function doesn't return a value
+ */
 document.addEventListener('DOMContentLoaded', () => {
+  /**
+   * Adds a click event listener to the AI magic button that triggers the content script
+   * @param {void} - No parameters
+   /**
+    * Listens for messages from the Chrome runtime and handles display actions
+    * @param {Object} request - The message object containing the action and content
+    * @param {Object} sender - Information about the sender of the message
+    * @param {function} sendResponse - Function to send a response back to the sender
+    * @returns {undefined} This function does not return a value
+    */
+   * @returns {void} This function does not return a value
+   */
   document.getElementById('ai-magic-button').addEventListener('click', () => {
     const aiMagicButton = document.getElementById('ai-magic-button');
     aiMagicButton.textContent = '...updating';
@@ -34,7 +50,22 @@ document.addEventListener('DOMContentLoaded', () => {
       aiMagicButton.disabled = false; // Enable the button
     }
   });
+/**
+ * Copies the specified text to the clipboard using the Clipboard API
+ * @param {string} textToCopy - The text to be copied to the clipboard
+ * @returns {Promise<void>} A promise that resolves when the text is successfully copied, or rejects with an error if the operation fails
+ */
 
+  /**
+   * Handles the error if copying fails
+   * @param {Error} err - The error object thrown during the copy operation
+   * @returns {void} This function doesn't return anything
+   */
+  /**
+   * Adds a click event listener to the copy button that copies the text content of the response container to the clipboard.
+   * @param {void} - This function doesn't take any parameters.
+   * @returns {void} This function doesn't return a value.
+   */
   document.getElementById('copy-button').addEventListener('click', () => {
     const responseContainer = document.getElementById('response-container');
     const textToCopy = responseContainer.innerText; // Get the text content without HTML tags
