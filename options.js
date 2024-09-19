@@ -56,8 +56,28 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleSettings(apiProvider);
   });
 
+  /**
+   * Adds an event listener to the Azure API key input field and saves the value to Chrome storage.
+   * @param {Event} event - The input event triggered when the user types in the field.
+   * @returns {void} This function does not return a value.
+   /**
+    * Adds an event listener to the 'azure-endpoint' input element to update Chrome storage when the value changes.
+    * @param {Event} event - The input event object.
+    * @returns {void} This function does not return a value.
+    /**
+     * Adds an event listener to the OpenAI API key input field to save the key in Chrome storage when it changes.
+     * @param {Event} event - The input event triggered when the API key field value changes.
+     * @returns {void} This function does not return a value.
+     */
+    */
+   */
   document.getElementById('azure-api-key').addEventListener('input', (event) => {
     chrome.storage.sync.set({ azureApiKey: event.target.value });
+  /**
+   * Adds an event listener to the OpenAI endpoint input field to save its value to Chrome storage.
+   * @param {Event} event - The input event triggered by changes to the input field.
+   * @returns {void} This function doesn't return a value.
+   */
   });
 
   document.getElementById('azure-endpoint').addEventListener('input', (event) => {

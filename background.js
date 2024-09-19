@@ -23,6 +23,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
        * @returns {void} Does not return a value
        */
       ```
+      /**
+       * Callback function for script injection
+       * @param {void} - No parameters
+       * @returns {void} No return value
+       */
       }, () => {
         if (chrome.runtime.lastError) {
           console.error("Script injection failed: ", chrome.runtime.lastError);

@@ -15,9 +15,22 @@ document.addEventListener('DOMContentLoaded', () => {
     */
    * @returns {void} This function does not return a value
    */
+  /**
+   * Adds a click event listener to the AI magic button that triggers the content script
+   * @param {void} - No parameters
+   * @returns {void} This function doesn't return a value
+   */
   document.getElementById('ai-magic-button').addEventListener('click', () => {
     const aiMagicButton = document.getElementById('ai-magic-button');
-    aiMagicButton.textContent = '...updating';
+    ```
+    /**
+     * Handles incoming messages from the Chrome runtime, updating the UI based on the message content.
+     * @param {Object} request - The message object containing the action and content.
+     * @param {Object} sender - Information about the sender of the message.
+     * @param {Function} sendResponse - Function to send a response back to the sender.
+     * @returns {undefined} This function does not return a value.
+     */
+    ```    aiMagicButton.textContent = '...updating';
     aiMagicButton.disabled = true; // Disable the button
     chrome.runtime.sendMessage({ action: 'triggerContentScript' });
   });
@@ -57,6 +70,13 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 
   /**
+   ```
+   /**
+    * Copies the provided text to the clipboard using the Clipboard API
+    * @param {string} textToCopy - The text to be copied to the clipboard
+    * @returns {Promise<void>} A promise that resolves when the text is successfully copied, or rejects with an error if the operation fails
+    */
+   ```
    * Handles the error if copying fails
    * @param {Error} err - The error object thrown during the copy operation
    * @returns {void} This function doesn't return anything
@@ -66,6 +86,13 @@ document.addEventListener('DOMContentLoaded', () => {
    * @param {void} - This function doesn't take any parameters.
    * @returns {void} This function doesn't return a value.
    */
+  ```
+  /**
+   * Handles the error when copying fails
+   * @param {Error} err - The error object containing details about the failure
+   * @returns {void} This function doesn't return anything
+   */
+  ```
   document.getElementById('copy-button').addEventListener('click', () => {
     const responseContainer = document.getElementById('response-container');
     const textToCopy = responseContainer.innerText; // Get the text content without HTML tags
